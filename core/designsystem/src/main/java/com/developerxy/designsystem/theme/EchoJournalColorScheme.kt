@@ -18,6 +18,7 @@ data class EchoJournalColorScheme(
     val primaryContainer: Color,
     val onPrimary: Color,
     val onPrimaryFixed: Color,
+    val onPrimaryContainer: Color,
     val inversePrimary: Color,
     val secondary: Color,
     val secondaryContainer: Color,
@@ -51,7 +52,7 @@ data class EchoJournalColorScheme(
         background = background,
         onErrorContainer = onErrorContainer,
         errorContainer = errorContainer,
-        onError = onError
+        onError = onError,
     )
 }
 
@@ -68,6 +69,7 @@ val DefaultEchoJournalColorScheme = EchoJournalColorScheme(
     primaryContainer = Primary50,
     onPrimary = Primary100,
     onPrimaryFixed = Primary10,
+    onPrimaryContainer = Secondary95,
     inversePrimary = Secondary80,
     secondary = Secondary30,
     secondaryContainer = Secondary50,
