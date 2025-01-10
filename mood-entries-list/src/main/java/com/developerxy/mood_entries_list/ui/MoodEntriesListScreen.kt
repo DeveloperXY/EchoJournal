@@ -40,13 +40,17 @@ fun MoodEntriesListScreen() {
 private fun MoodEntriesListScreenContent() {
     val scope = rememberCoroutineScope()
     val bottomSheetState =
-        rememberStandardBottomSheetState(initialValue = SheetValue.Hidden, skipHiddenState = false)
+        rememberStandardBottomSheetState(
+            initialValue = SheetValue.PartiallyExpanded,
+            skipHiddenState = true
+        )
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState)
 
-    BackHandler(enabled = bottomSheetState.isVisible) { scope.launch { bottomSheetState.hide() } }
+    BackHandler(enabled = bottomSheetState.isVisible) { scope.launch { bottomSheetState.partialExpand() } }
 
     RecordMoodEntryBottomSheet(
         scaffoldState = scaffoldState,
+        onDismissRequest = { scope.launch { bottomSheetState.partialExpand() } }
     ) {
         Scaffold(
             topBar = {
@@ -69,7 +73,7 @@ private fun MoodEntriesListScreenContent() {
                     },
                     onClick = {
                         scope.launch {
-                            bottomSheetState.expand()
+                            scaffoldState.bottomSheetState.expand()
                         }
                     }
                 )
