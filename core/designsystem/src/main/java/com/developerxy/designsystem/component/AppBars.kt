@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.developerxy.designsystem.R
 import com.developerxy.designsystem.icons.ArrowBack
 import com.developerxy.designsystem.icons.EchoJournalIcons
@@ -33,7 +34,7 @@ fun DefaultAppBar(
     onClickSettings: () -> Unit = {}
 ) {
     TopAppBar(
-        modifier = modifier,
+        modifier = modifier.background(Color.Transparent),
         title = {
             Text(
                 text = stringResource(R.string.your_echo_journal),
@@ -59,22 +60,25 @@ fun DefaultAppBar(
 
 @Composable
 fun BackEnabledAppBar(
+    title: String,
     modifier: Modifier = Modifier,
-    onClickSettings: () -> Unit = {}
+    onBackPressed: () -> Unit = {}
 ) {
     CenterAlignedTopAppBar(
-        modifier = modifier,
+        modifier = modifier.background(Color.Transparent),
         title = {
             Text(
-                text = stringResource(R.string.your_echo_journal),
-                style = typography().headlineLarge
+                text = title,
+                style = typography().headlineMedium.copy(
+                    lineHeight = 28.sp
+                )
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.Transparent
         ),
         navigationIcon = {
-            IconButton(onClick = onClickSettings) {
+            IconButton(onClick = onBackPressed) {
                 Icon(
                     modifier = Modifier
                         .requiredSize(48.dp)
@@ -91,13 +95,7 @@ fun BackEnabledAppBar(
 @Composable
 private fun DefaultAppBarPreview(modifier: Modifier = Modifier) {
     EchoJournalTheme {
-        DefaultAppBar(
-            modifier = Modifier.background(
-                brush = Brush.verticalGradient(
-                    0.0f to colorsScheme().bgGradientStart, 1f to colorsScheme().bgGradientEnd,
-                )
-            )
-        )
+        DefaultAppBar()
     }
 }
 
@@ -105,12 +103,6 @@ private fun DefaultAppBarPreview(modifier: Modifier = Modifier) {
 @Composable
 private fun BackEnabledAppBarPreview(modifier: Modifier = Modifier) {
     EchoJournalTheme {
-        BackEnabledAppBar(
-            modifier = Modifier.background(
-                brush = Brush.verticalGradient(
-                    0.0f to colorsScheme().bgGradientStart, 1f to colorsScheme().bgGradientEnd,
-                )
-            )
-        )
+        BackEnabledAppBar("Settings")
     }
 }

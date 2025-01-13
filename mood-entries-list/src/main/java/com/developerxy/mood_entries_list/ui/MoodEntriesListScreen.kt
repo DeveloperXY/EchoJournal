@@ -32,12 +32,18 @@ import com.developerxy.mood_record_audio.ui.RecordMoodEntryBottomSheet
 import kotlinx.coroutines.launch
 
 @Composable
-fun MoodEntriesListScreen() {
-    MoodEntriesListScreenContent()
+fun MoodEntriesListScreen(
+    onOpenSettings: () -> Unit
+) {
+    MoodEntriesListScreenContent(
+        onOpenSettings = onOpenSettings
+    )
 }
 
 @Composable
-private fun MoodEntriesListScreenContent() {
+private fun MoodEntriesListScreenContent(
+    onOpenSettings: () -> Unit = {}
+) {
     val scope = rememberCoroutineScope()
     val bottomSheetState =
         rememberStandardBottomSheetState(
@@ -54,7 +60,9 @@ private fun MoodEntriesListScreenContent() {
     ) {
         Scaffold(
             topBar = {
-                DefaultAppBar()
+                DefaultAppBar(
+                    onClickSettings = onOpenSettings
+                )
             },
             floatingActionButton = {
                 EchoJournalFloatingActionButton(

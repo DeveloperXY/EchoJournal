@@ -1,9 +1,12 @@
 package com.developerxy.designsystem.theme
 
+import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 
 @Composable
 fun EchoJournalTheme(
@@ -11,6 +14,13 @@ fun EchoJournalTheme(
     echoJournalTypography: EchoJournalTypography = DefaultEchoJournalTypography,
     content: @Composable () -> Unit
 ) {
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        val window = (view.context as Activity).window
+        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
+        WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = true
+    }
+
     CompositionLocalProvider(
         LocalEchoJournalColors provides echoJournalColorScheme,
         LocalEchoJournalTypography provides echoJournalTypography

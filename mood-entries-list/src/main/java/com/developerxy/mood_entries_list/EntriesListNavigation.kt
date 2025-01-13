@@ -8,9 +8,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data object EntriesListDestination
 
-fun NavGraphBuilder.entriesListScreen() {
+fun NavGraphBuilder.entriesListScreen(
+    onOpenSettings: () -> Unit
+) {
     composable<EntriesListDestination> {
-        MoodEntriesListScreen()
+        MoodEntriesListScreen(
+            onOpenSettings = onOpenSettings
+        )
     }
 }
 
