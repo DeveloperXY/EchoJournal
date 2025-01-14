@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.developerxy.designsystem.component.DefaultAppBar
 import com.developerxy.designsystem.component.EchoJournalFloatingActionButton
+import com.developerxy.designsystem.component.EchoJournalMemoPlayer
 import com.developerxy.designsystem.icons.Add
 import com.developerxy.designsystem.icons.EchoJournalIcons
 import com.developerxy.designsystem.theme.EchoJournalTheme
@@ -98,7 +99,7 @@ private fun MoodEntriesListScreenContent(
                     )
                     .padding(padding)
             ) {
-
+                EchoJournalMemoPlayer()
             }
         }
     }
